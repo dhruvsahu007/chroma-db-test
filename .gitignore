@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# ChromaDB
+backend/chroma_db/
+
+# Environment variables
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+dist/
+.npm
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AWS
+.aws/
+credentials
+*.pem
+
+# Deployment
+backend.log
+frontend.log
