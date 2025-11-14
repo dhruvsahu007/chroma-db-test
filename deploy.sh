@@ -35,8 +35,8 @@ fi
 echo -e "${YELLOW}Step 1: Installing system dependencies...${NC}"
 if [ "$OS" = "amzn" ] || [ "$OS" = "centos" ] || [ "$OS" = "rhel" ]; then
     # Amazon Linux / CentOS / RHEL
-    sudo yum update -y
-    sudo yum install -y python3.11 python3.11-pip git curl tar gzip
+    sudo yum update -y --skip-broken
+    sudo yum install -y python3.11 python3.11-pip git tar gzip
 else
     # Ubuntu / Debian
     sudo apt update
