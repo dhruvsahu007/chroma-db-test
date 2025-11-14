@@ -24,14 +24,36 @@ fi
 
 PROJECT_DIR="$HOME/chroma-db-test"
 
+# Detect OS
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+else
+    OS=$(uname -s)
+fi
+
 echo -e "${YELLOW}Step 1: Installing system dependencies...${NC}"
-sudo apt update
-sudo apt install -y python3.11 python3.11-venv python3-pip git curl
+if [ "$OS" = "amzn" ] || [ "$OS" = "centos" ] || [ "$OS" = "rhel" ]; then
+    # Amazon Linux / CentOS / RHEL
+    sudo yum update -y
+    sudo yum install -y python3.11 python3.11-pip git curl tar gzip
+else
+    # Ubuntu / Debian
+    sudo apt update
+    sudo apt install -y python3.11 python3.11-venv python3-pip git curl
+fi
 
 echo -e "${YELLOW}Step 2: Installing Node.js and npm...${NC}"
 if ! command -v node &> /dev/null; then
-    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-    sudo apt install -y nodejs
+    if [ "$OS" = "amzn" ] || [ "$OS" = "centos" ] || [ "$OS" = "rhel" ]; then
+        # Amazon Linux / CentOS / RHEL
+        curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+        sudo yum install -y nodejs
+    else
+        # Ubuntu / Debian
+        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+        sudo apt install -y nodejs
+    fi
 fi
 
 echo -e "${YELLOW}Step 3: Installing PM2...${NC}"
