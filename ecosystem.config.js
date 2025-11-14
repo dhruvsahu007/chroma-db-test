@@ -4,7 +4,6 @@ module.exports = {
       name: 'rag-backend',
       script: '.venv/bin/python',
       args: 'backend/app.py',
-      cwd: '/home/ubuntu/chroma-db-test',
       interpreter: 'none',
       env: {
         PYTHONUNBUFFERED: '1'
@@ -19,7 +18,6 @@ module.exports = {
       name: 'rag-frontend',
       script: 'serve',
       args: '-s frontend/dist -l 5173',
-      cwd: '/home/ubuntu/chroma-db-test',
       env: {
         NODE_ENV: 'production'
       },
