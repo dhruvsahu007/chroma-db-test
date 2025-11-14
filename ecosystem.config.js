@@ -16,8 +16,8 @@ module.exports = {
     },
     {
       name: 'rag-frontend',
-      script: 'serve',
-      args: '-s frontend/dist -p 5173',
+      script: 'npx',
+      args: ['serve', '-s', 'frontend/dist', '-p', '5173'],
       env: {
         NODE_ENV: 'production'
       },
